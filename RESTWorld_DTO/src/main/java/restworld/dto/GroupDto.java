@@ -1,7 +1,11 @@
 package restworld.dto;
 
+import java.util.Set;
+
 import javax.validation.constraints.NotNull;
 
+import restworld.datatype.Reference;
+import restworld.persistence.entity.Guest;
 import restworld.validation.group.RequiredFieldsNotNull;
 
 public class GroupDto {
@@ -12,6 +16,8 @@ public class GroupDto {
 	@NotNull(groups = RequiredFieldsNotNull.class)
 	private String name;
 
+	private Set<Reference<Guest, Long>> guestMembers;
+	
 	public Integer getSize() {
 		return size;
 	}
@@ -26,6 +32,14 @@ public class GroupDto {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Set<Reference<Guest, Long>> getGuestMembers() {
+		return guestMembers;
+	}
+
+	public void setGuestMembers(Set<Reference<Guest, Long>> guestMembers) {
+		this.guestMembers = guestMembers;
 	}
 
 	@Override

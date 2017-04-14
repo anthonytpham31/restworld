@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +27,8 @@ public class Group implements BaseEntity<Long> {
 	@Column(unique = true, nullable = false)
 	private String name;
 
-	// private Set<Guest> groupMembers;
+	@OneToMany(mappedBy = "members")
+	private Set<Guest> groupMembers;
 	
 	public Long getId() {
 		return id;
@@ -50,6 +52,14 @@ public class Group implements BaseEntity<Long> {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Set<Guest> getGroupMembers() {
+		return groupMembers;
+	}
+
+	public void setGroupMembers(Set<Guest> groupMembers) {
+		this.groupMembers = groupMembers;
 	}
 
 	@Override

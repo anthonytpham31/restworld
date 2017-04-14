@@ -3,6 +3,7 @@ package restworld.persistence.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import restworld.persistence.entity.embeddable.Credentials;
 import restworld.persistence.entity.embeddable.FullName;
@@ -18,6 +19,9 @@ public class Guest implements BaseEntity<Long> {
 	private FullName name;
 	
 	private Credentials credentials;
+	
+	@ManyToOne
+	private Group members;
 	
 	public Long getId() {
 		return id;
@@ -41,6 +45,14 @@ public class Guest implements BaseEntity<Long> {
 
 	public void setCredentials(Credentials credentials) {
 		this.credentials = credentials;
+	}
+	
+	public Group getMembers() {
+		return members;
+	}
+
+	public void setMembers(Group members) {
+		this.members = members;
 	}
 
 	@Override
